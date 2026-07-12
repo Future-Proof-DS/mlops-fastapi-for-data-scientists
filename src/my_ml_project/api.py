@@ -2,7 +2,7 @@
 
 Run it with:
 
-    uvicorn app.main:app --reload
+    uvicorn my_ml_project.api:app --reload
 
 Then open http://localhost:8000/docs to try it out.
 """
@@ -13,7 +13,7 @@ from pathlib import Path
 import joblib
 from fastapi import FastAPI
 
-from app.schemas import PredictionRequest, PredictionResponse
+from my_ml_project.schemas import PredictionRequest, PredictionResponse
 
 # Configure logging once, here, so every prediction shows up in your terminal.
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
@@ -23,7 +23,8 @@ app = FastAPI(title="Churn Prediction Service")
 
 # Load the model ONCE at import time, not on every request. Loading from disk
 # is slow, so we pay that cost a single time when the server starts up.
-MODEL_PATH = Path(__file__).parent.parent / "model" / "churn_model.pkl"
+# parents[2] walks up from src/my_ml_project/api.py to the project root.
+MODEL_PATH = Path(__file__).resolve().parents[2] / "models" / "churn_model.pkl"
 model = joblib.load(MODEL_PATH)
 
 

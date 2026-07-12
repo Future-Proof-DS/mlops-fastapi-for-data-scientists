@@ -1,8 +1,8 @@
 [project]
-name = "fastapi-for-data-scientists"
+name = "mlops-fastapi-for-data-scientists"
 version = "0.1.0"
-description = "Hands-on exercise: serve a churn model with FastAPI"
-requires-python = ">=3.9"
+description = "Serve a churn model with FastAPI. Companion to Part 2 of the MLOps for Data Scientists series."
+requires-python = ">=3.10"
 dependencies = [
     "fastapi",
     "uvicorn",
@@ -12,6 +12,16 @@ dependencies = [
     "pydantic",
     "requests",
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# The "src layout" from Part 1: the package lives under src/, so it must be
+# installed to import it (uv does this for you on `uv sync`/`uv run`). That's
+# what makes `uvicorn my_ml_project.api:app` work from anywhere.
+[tool.hatch.build.targets.wheel]
+packages = ["src/my_ml_project"]
 
 # Note: requirements.txt mirrors these dependencies for readers who prefer
 # pip/pipenv. If you change one, update the other.

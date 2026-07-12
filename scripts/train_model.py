@@ -1,5 +1,7 @@
 """Train a tiny churn model and save it to disk.
 
+    uv run scripts/train_model.py
+
 This is intentionally minimal. The goal is "we have a trained model to serve,"
 not "we trained a great model." Don't read too much into the accuracy.
 """
@@ -33,8 +35,10 @@ y = df["churned"]
 model = LogisticRegression(max_iter=1000)
 model.fit(X, y)
 
-# Save next to this script so the path is stable no matter where you run from.
-output_path = Path(__file__).parent / "churn_model.pkl"
+# Save to the project's models/ folder (parents[1] is the project root).
+models_dir = Path(__file__).resolve().parents[1] / "models"
+models_dir.mkdir(exist_ok=True)
+output_path = models_dir / "churn_model.pkl"
 joblib.dump(model, output_path)
 
 print(f"Model trained and saved to {output_path}")

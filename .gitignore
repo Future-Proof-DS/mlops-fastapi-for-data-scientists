@@ -2,8 +2,8 @@
 .venv/
 venv/
 
-# Generated model artifact — recreated by model/train_model.py
-model/churn_model.pkl
+# Generated model artifact, recreated by scripts/train_model.py
+models/*.pkl
 
 # Python
 __pycache__/

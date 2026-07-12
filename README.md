@@ -32,7 +32,7 @@ workflow, and it's what you'd use for a real service.
 ### Step 1: Train the model
 
 ```bash
-uv run model/train_model.py
+uv run scripts/train_model.py
 ```
 
 *You should see:* on this **first** `uv run`, uv resolves and installs the
@@ -43,7 +43,7 @@ reuse the same environment, so they start instantly.
 ### Step 2: Start the server (leave this running)
 
 ```bash
-uv run uvicorn app.main:app --reload
+uv run uvicorn my_ml_project.api:app --reload
 ```
 
 *You should see:* `Uvicorn running on http://127.0.0.1:8000`. Notice the terminal
@@ -65,16 +65,17 @@ telling you it handled a request.
 
 ### Using pip instead
 
-Prefer the classic `venv` + `pip` workflow (or using pipenv)? The repo ships a
-`requirements.txt` too. Here you *do* manage the environment yourself:
+Prefer the classic `venv` + `pip` workflow? Here you *do* manage the environment
+yourself. Because this uses the src layout, install the project itself (not just
+`requirements.txt`) so the `my_ml_project` package is importable:
 
 ```bash
 python3 -m venv venv           # create an isolated environment
 source venv/bin/activate       # activate it; your prompt now shows (venv)
-pip install -r requirements.txt
+pip install -e .               # installs the project and its dependencies
 
-python model/train_model.py    # then, same as above but without the `uv run` prefix
-uvicorn app.main:app --reload
+python scripts/train_model.py
+uvicorn my_ml_project.api:app --reload
 # in a second terminal (activate the venv there too): python client/call_predict.py
 ```
 
@@ -92,8 +93,8 @@ Your job is to get hands-on with the running service:
    FastAPI builds this interactive page for free from your Pydantic models.
    Expand the `/predict` endpoint, click **Try it out**, and send a request
    right from the browser.
-4. **Implement the `/health` endpoint.** Open `app/main.py` and find the
-   `TODO` near the bottom. Add a simple health check endpoint.
+4. **Implement the `/health` endpoint.** Open `src/my_ml_project/api.py` and find
+   the `TODO` near the bottom. Add a simple health check endpoint.
 5. **Verify it works.** With the server running, visit
    [http://localhost:8000/health](http://localhost:8000/health) in your browser.
    You should see `{"status": "ok"}`.

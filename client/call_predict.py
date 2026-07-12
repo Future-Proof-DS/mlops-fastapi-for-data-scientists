@@ -2,11 +2,11 @@
 
 Make sure the server is running first (in another terminal):
 
-    uvicorn app.main:app --reload
+    uvicorn my_ml_project.api:app --reload
 
 Then run this script:
 
-    python client/call_predict.py
+    uv run client/call_predict.py
 """
 
 import requests
