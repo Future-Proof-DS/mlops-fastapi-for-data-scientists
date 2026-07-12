@@ -2,7 +2,7 @@
 
 A small, runnable companion to **Part 2** of the
 [MLOps for Data Scientists](https://futureproofds.com/blog/mlops-for-data-scientists)
-series. You'll take a tiny churn model, wrap it in a FastAPI service, call it for
+course. You'll take a tiny churn model, wrap it in a FastAPI service, call it for
 a real prediction, and add one endpoint yourself. Budget about **10-20 minutes**.
 
 ---
@@ -18,7 +18,7 @@ experience needed. If you can train a model and write a function, you're ready.
 
 This project uses [uv](https://docs.astral.sh/uv/), the same tool as
 [Part 1](https://futureproofds.com/blog/mlops-for-data-scientists/1-notebooks-dont-ship)
-of this series. The nice thing: with `uv run`, you **don't
+of this course. The nice thing: with `uv run`, you **don't
 create or activate a virtual environment yourself**. The first time you run
 something, uv reads `pyproject.toml`, builds an isolated environment, and
 installs the dependencies for you, then caches it. That's the modern Python
@@ -27,7 +27,7 @@ workflow, and it's what you'd use for a real service.
 > **Don't have uv?** Install it in one line:
 > `curl -LsSf https://astral.sh/uv/install.sh | sh` (see
 > [the docs](https://docs.astral.sh/uv/getting-started/installation/) for other
-> platforms). Prefer plain pip? See [Using pip instead](#using-pip-instead).
+> platforms).
 
 ### Step 1: Train the model
 
@@ -62,22 +62,6 @@ uv run client/call_predict.py
 *You should see:* a churn probability and a risk band come back, plus a new
 log line appear in your **first** terminal. That log line is your service
 telling you it handled a request.
-
-### Using pip instead
-
-Prefer the classic `venv` + `pip` workflow? Here you *do* manage the environment
-yourself. Because this uses the src layout, install the project itself so the
-`my_ml_project` package is importable:
-
-```bash
-python3 -m venv venv           # create an isolated environment
-source venv/bin/activate       # activate it; your prompt now shows (venv)
-pip install -e .               # installs the project and its dependencies
-
-python scripts/train_model.py
-uvicorn my_ml_project.api:app --reload
-# in a second terminal (activate the venv there too): python client/call_predict.py
-```
 
 ## 3. Your exercise
 
