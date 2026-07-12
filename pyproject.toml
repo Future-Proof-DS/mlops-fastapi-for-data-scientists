@@ -1,0 +1,17 @@
+[project]
+name = "fastapi-for-data-scientists"
+version = "0.1.0"
+description = "Hands-on exercise: serve a churn model with FastAPI"
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "scikit-learn",
+    "pandas",
+    "joblib",
+    "pydantic",
+    "requests",
+]
+
+# Note: requirements.txt mirrors these dependencies for readers who prefer
+# pip/pipenv. If you change one, update the other.

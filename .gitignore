@@ -1,0 +1,10 @@
+# Virtual environments (uv uses .venv; the pip path uses venv/)
+.venv/
+venv/
+
+# Generated model artifact — recreated by model/train_model.py
+model/churn_model.pkl
+
+# Python
+__pycache__/
+*.pyc
