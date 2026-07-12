@@ -1,6 +1,5 @@
-# Virtual environments (uv uses .venv; the pip path uses venv/)
+# Virtual environment (uv)
 .venv/
-venv/
 
 # Generated model artifact, recreated by scripts/train_model.py
 models/*.pkl
