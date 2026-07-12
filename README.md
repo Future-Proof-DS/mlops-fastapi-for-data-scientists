@@ -66,8 +66,8 @@ telling you it handled a request.
 ### Using pip instead
 
 Prefer the classic `venv` + `pip` workflow? Here you *do* manage the environment
-yourself. Because this uses the src layout, install the project itself (not just
-`requirements.txt`) so the `my_ml_project` package is importable:
+yourself. Because this uses the src layout, install the project itself so the
+`my_ml_project` package is importable:
 
 ```bash
 python3 -m venv venv           # create an isolated environment

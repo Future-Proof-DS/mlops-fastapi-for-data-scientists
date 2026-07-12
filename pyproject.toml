@@ -22,6 +22,3 @@ build-backend = "hatchling.build"
 # what makes `uvicorn my_ml_project.api:app` work from anywhere.
 [tool.hatch.build.targets.wheel]
 packages = ["src/my_ml_project"]
-
-# Note: requirements.txt mirrors these dependencies for readers who prefer
-# pip/pipenv. If you change one, update the other.
